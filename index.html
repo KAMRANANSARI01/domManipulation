@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Manipulation</title>
+</head>
+<body>
+    <ul class="parent">
+        <li>python</li>
+    </ul>
+</body>
+<script>
+    const addLi = (item) => {
+      const list = document.createElement('li')
+      list.innerHTML = `${item}`
+      const liElement = document.querySelector('.parent')
+      liElement.appendChild(list)
+    }
+    addLi('javascript')
+
+    // but that is not a optimal solution when there will be thousands of list and you wanna add new item in the list then it has to traverse all the list everytime when you inject new list item. so other optimal solution are given below.
+
+    const addLang = (name)=>{
+        let li = document.createElement('li')
+        const addText = document.createTextNode(name);
+        li.appendChild(addText);
+        document.querySelector('.parent').appendChild(li)
+    }
+    addLang("typescript")
+
+    // editing list
+   let secondChild = document.querySelector('li:nth-child(2)')
+   secondChild.style.backgroundColor = 'red'
+
+//    changing the name of any list.
+let changeName = document.querySelector('li:last-Child')
+//  console.log(changeName)
+// changeName.innerText='mojo'
+// anotherway 
+let newlist = document.createElement('li')
+newlist.appendChild(document.createTextNode('java'))
+changeName.replaceWith('java')
+
+// now delete the firstchild
+
+let deleteli = document.querySelector('li:first-Child')
+deleteli.remove()
+</script>
+</html>
